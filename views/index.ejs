@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html ng-app="angular">
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <!--<script src="core.js"></script>-->
+</head>
+
+<body ng-controller="mainController">
+    <div class="container">
+	
+	<form>
+        <div class="form-group">
+
+			<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+			<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+        </div>
+		{{todos}}
+        <!-- createToDo() WILL CREATE NEW TODOS -->
+        <button type="submit" class="btn btn-primary btn-lg">Add</button>
+	</form>
+	
+	</div>
+	<script>
+	var app = angular.module('angular', []);
+
+app.controller("mainController", function($scope, $http) {
+    $scope.formData = {};
+
+    // when landing on the page, get all todos and show them
+    $http.get('/books')
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+});
+	</script>
+</body>
+</html>
