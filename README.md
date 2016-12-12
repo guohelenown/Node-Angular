@@ -1,0 +1,3 @@
+# angular-node-express
+
+Build a node api to respond books info. Build an Angular app to consume the API. In working...
